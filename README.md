@@ -5,6 +5,20 @@
 - CRUD (Create, Read, Update, Delete)
 - Sorting
 
+## Tech stack
+- Backend
+  - Node.js
+  - Express.js
+- Database
+  - monogodb
+- Frontend
+  - React.js
+  - Tailwind.js
+- Deployment Platform
+  - Frontend (vercel.com)
+  - Backend (render.com)
+  - Database (mongodb atlas)
+
 ## Deployed link
 ### backend = https://gyandhan.onrender.com
 ### frontend = https://gyandhan-dgm2.vercel.app/
