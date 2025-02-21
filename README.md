@@ -1,5 +1,5 @@
 ### Title 
-## Simple Full-Stack Todo
+## Simple Full-Stack Todo App
 
 ## Feachers
 - CRUD (Create, Read, Update, Delete)
