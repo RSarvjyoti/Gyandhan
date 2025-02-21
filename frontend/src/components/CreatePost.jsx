@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 
 const CreatePost = () => {
   const [post, setPost] = useState({
@@ -8,7 +9,6 @@ const CreatePost = () => {
     priority: "",
     dueDate: "",
   });
-  const [message, setMessage] = useState(null);
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -18,36 +18,27 @@ const CreatePost = () => {
     e.preventDefault();
 
     if (!post.title || !post.description || !post.priority || !post.dueDate) {
-      setMessage({ text: "All fields are required!", type: "error" });
+      toast.error("All fields are required!");
       return;
     }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://gyandhan.onrender.com/api/task/create",
         post
       );
 
-      setMessage({ text: "Task created successfully!", type: "success" });
+      toast.success("Task created successfully!");
       setPost({ title: "", description: "", priority: "", dueDate: "" });
     } catch (error) {
-      setMessage({ text: "Failed to create task.", type: "error" });
+      toast.error("Failed to create task.");
     }
   };
 
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
+      <Toaster /> {/* This will render toast notifications */}
       <h2 className="text-xl font-bold mb-4 text-center">Create New Task</h2>
-      
-      {message && (
-        <div
-          className={`text-center p-2 mb-3 rounded ${
-            message.type === "success" ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"
-          }`}
-        >
-          {message.text}
-        </div>
-      )}
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
